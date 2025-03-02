@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour, IPlayerActions, IDamagable
     private Rigidbody2D rigidbody2D;
     private Vector2 movement;
 
-    public float speed = 100f;
+    public float speed = 10f;
+    public float currentSpeed = 10f;
 
     private NewControls inputActions;
 
@@ -50,14 +51,14 @@ public class PlayerController : MonoBehaviour, IPlayerActions, IDamagable
     void FixedUpdate()
     {
         //movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-        rigidbody2D.linearVelocity = movement * speed;
+        rigidbody2D.linearVelocity = movement * currentSpeed;
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector3>();
         movement.Normalize();
-        Debug.Log($"Movement: {movement}");
+        //Debug.Log($"Movement: {movement}");
     }
 
     public void Heal(float v)

@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class ScorePickup : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public int score = 1;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             var collectable = collision.gameObject.GetComponent<PlayerController>();
             if (collectable != null)
             {
-                collectable.Score += 1;
+                collectable.Score += score;
                 Destroy(gameObject);
             }
         }

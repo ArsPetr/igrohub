@@ -1035,6 +1035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  currentSpeed: 10
   healthUI: {fileID: 813177652}
   scoreUI: {fileID: 1592294074}
 --- !u!1001 &964285676
@@ -1794,6 +1795,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 639693020}
   - {fileID: 619394802}
   - {fileID: 920917927}
   - {fileID: 1878759193078623372}
@@ -1803,5 +1805,4 @@ SceneRoots:
   - {fileID: 1125420493}
   - {fileID: 1375262305}
   - {fileID: 351817585}
-  - {fileID: 639693020}
   - {fileID: 1138946241}
