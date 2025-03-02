@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuffManager : MonoBehaviour
 {
     
     private Dictionary<Buff, float> Buffs = new Dictionary<Buff, float>();
 
+
+    public GameObject buffDisplayPrefab;
+    public GameObject buffDisplayParent;
+
     public void AddBuff(Buff buff)
     {
         Buffs.Add(buff, buff.duration);
         buff.OnBuff(gameObject);
-        StartCoroutine(Progress(buff));
+        Image buffDisplay = Instantiate(buffDisplayPrefab, buffDisplayParent.transform).GetComponent<Image>();
+        buffDisplay.fillAmount = 1;
+        
+        StartCoroutine(Progress(buff, buffDisplay));
     }
 
-    public IEnumerator Progress(Buff buff)
-    {
-        float duration = Buffs.GetValueOrDefault(buff, 0);
-
-        while (duration > 0)
+    public IEnumerator Progress(Buff buff, Image slider)
+    {      
+        while (Buffs[buff] > 0)
         {
-            Debug.Log(buff.buffname + " " + duration);
-
+            Debug.Log(buff.buffname + " " + Buffs[buff]);
+         
             Buffs[buff] -= 0.1f;
-            duration -= 0.1f;
+            slider.fillAmount = Buffs[buff] / buff.duration;
             yield return new WaitForSeconds(0.1f);
         }
 
